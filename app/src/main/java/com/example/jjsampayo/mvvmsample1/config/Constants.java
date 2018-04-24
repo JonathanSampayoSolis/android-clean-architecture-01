@@ -6,4 +6,5 @@ public final class Constants {
 
     public static final String DB_NAME = "app_users_db";
 
+    public static final int URL_CODE_OK = 200;
 }

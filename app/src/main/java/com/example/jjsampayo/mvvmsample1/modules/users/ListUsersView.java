@@ -14,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import android.support.v7.widget.helper.ItemTouchHelper;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,11 +25,11 @@ import com.example.jjsampayo.mvvmsample1.R;
 import com.example.jjsampayo.mvvmsample1.modules.ViewPagerActivity;
 import com.example.jjsampayo.mvvmsample1.repositories.models.User;
 import com.example.jjsampayo.mvvmsample1.util.anim.SwipeController;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.jjsampayo.mvvmsample1.util.network.RequestState;
 
 public class ListUsersView extends Fragment {
+
+    private static final String TAG = ListUsersView.class.getSimpleName().toUpperCase();
 
     private ProgressBar progressBar;
 
@@ -55,6 +56,8 @@ public class ListUsersView extends Fragment {
         progressBar = mainView.findViewById(R.id.fra_list_users_progress);
         swipeRefreshLayout = mainView.findViewById(R.id.fra_list_users_swipe);
 
+        progressBar.setVisibility(View.VISIBLE);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -62,8 +65,6 @@ public class ListUsersView extends Fragment {
         SwipeController swipeController = new SwipeController();
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
         itemTouchHelper.attachToRecyclerView(recyclerView);
-
-        progressBar.setVisibility(View.VISIBLE);
 
         viewModel = ViewModelProviders.of(this).get(ListUsersViewModel.class);
 
@@ -102,12 +103,27 @@ public class ListUsersView extends Fragment {
                 }
             });
 
+            viewModel.getInitialState().observe(getActivity(), new Observer<RequestState>() {
+                @Override
+                public void onChanged(@Nullable RequestState requestState) {
+                    Log.d(TAG, "InitialState changed to: " + requestState.getStatus());
+                }
+            });
+
+            viewModel.getRequestState().observe(getActivity(), new Observer<RequestState>() {
+                @Override
+                public void onChanged(@Nullable RequestState requestState) {
+                    Log.d(TAG, "RequestState changed to: " + requestState.getStatus());
+                }
+            });
+
         }
     }
 
     private void launchPostFragment(String userID) {
-        getActivity().startActivity(new Intent(getActivity(), ViewPagerActivity.class)
-                .putExtra("USER_ID", Integer.parseInt(userID.split(":")[0]))
-                .putExtra("USER_NAME", userID.split(":")[1]));
+        if (getActivity() != null)
+            getActivity().startActivity(new Intent(getActivity(), ViewPagerActivity.class)
+                    .putExtra("USER_ID", Integer.parseInt(userID.split(":")[0]))
+                    .putExtra("USER_NAME", userID.split(":")[1]));
     }
 }

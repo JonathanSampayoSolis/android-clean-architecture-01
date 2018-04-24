@@ -16,4 +16,5 @@
     <string name="company">Company</string>
     <string name="posts">Posts</string>
     <string name="album">Album</string>
+    <string name="retry">Retry</string>
 </resources>

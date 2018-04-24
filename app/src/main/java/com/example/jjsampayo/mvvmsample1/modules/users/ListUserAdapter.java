@@ -56,7 +56,7 @@ public class ListUserAdapter extends PagedListAdapter<User, ListUserAdapter.List
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    viewModel.onClickItemEvent(getItem(getAdapterPosition()).getId(), getItem(getAdapterPosition()).getName());
+                    //viewModel.onClickItemEvent(getItem(getAdapterPosition()).getId(), getItem(getAdapterPosition()).getName());
                 }
             });
         }

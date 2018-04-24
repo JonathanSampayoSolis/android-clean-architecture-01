@@ -4,15 +4,18 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.paging.LivePagedListBuilder;
 import android.arch.paging.PagedList;
 import android.support.annotation.NonNull;
 
 import com.example.jjsampayo.mvvmsample1.App;
+import com.example.jjsampayo.mvvmsample1.repositories.UsersDataSource;
 import com.example.jjsampayo.mvvmsample1.repositories.UsersRepository;
 import com.example.jjsampayo.mvvmsample1.repositories.external.WebService;
 import com.example.jjsampayo.mvvmsample1.repositories.local.daos.UserDao;
 import com.example.jjsampayo.mvvmsample1.repositories.models.User;
+import com.example.jjsampayo.mvvmsample1.util.network.RequestState;
 import com.example.jjsampayo.mvvmsample1.util.reactive.ReactiveEvent;
 
 import javax.inject.Inject;
@@ -23,7 +26,7 @@ public class ListUsersViewModel extends AndroidViewModel {
     UsersRepository repository;
 
     @Inject
-    ReactiveEvent onClickItemEvent;
+    ReactiveEvent<String> onClickItemEvent;
 
     @Inject
     WebService webService;
@@ -32,6 +35,7 @@ public class ListUsersViewModel extends AndroidViewModel {
     UserDao userDao;
 
     private LiveData<PagedList<User>> listLiveData;
+
 
     public ListUsersViewModel(@NonNull Application application) {
         super(application);
@@ -42,11 +46,12 @@ public class ListUsersViewModel extends AndroidViewModel {
     public LiveData<PagedList<User>> getListUser() {
         if (listLiveData == null) {
             PagedList.Config pagedListConfig = new PagedList.Config.Builder()
-                    .setEnablePlaceholders(true)
+                    .setInitialLoadSizeHint(3)
                     .setPageSize(2)
+                    .setPrefetchDistance(2)
                     .build();
 
-            listLiveData = new LivePagedListBuilder<>(userDao.getAll(), pagedListConfig)
+            listLiveData = new LivePagedListBuilder<Integer, User>(new UsersDataSource(), pagedListConfig)
                     .build();
         }
         return listLiveData;
@@ -58,6 +63,14 @@ public class ListUsersViewModel extends AndroidViewModel {
 
     public void onClickItemEvent(int id, String name) {
         onClickItemEvent.setValue(String.valueOf(id) + ":" + name);
+    }
+
+    public MutableLiveData<RequestState> getInitialState() {
+        return repository.getInitialState();
+    }
+
+    public MutableLiveData<RequestState> getRequestState() {
+        return repository.getRequestState();
     }
 
 }
