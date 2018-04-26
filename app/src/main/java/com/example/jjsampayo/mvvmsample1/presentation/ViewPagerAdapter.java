@@ -1,4 +1,4 @@
-package com.example.jjsampayo.mvvmsample1.gui;
+package com.example.jjsampayo.mvvmsample1.presentation;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;

@@ -1,4 +1,4 @@
-package com.example.jjsampayo.mvvmsample1.data.repo_users;
+package com.example.jjsampayo.mvvmsample1.data.repositories.users;
 
 import android.arch.paging.DataSource;
 

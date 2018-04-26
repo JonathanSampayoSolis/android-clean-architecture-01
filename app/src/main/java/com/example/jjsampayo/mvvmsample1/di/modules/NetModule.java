@@ -1,6 +1,8 @@
 package com.example.jjsampayo.mvvmsample1.di.modules;
 
-import com.example.jjsampayo.mvvmsample1.repositories.external.WebService;
+import com.example.jjsampayo.mvvmsample1.data.external.WebService;
+
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
@@ -30,21 +32,25 @@ public class NetModule {
     @Provides
     @Singleton
     @SuppressWarnings("unused")
-    public OkHttpClient.Builder provideHttpBuilder(HttpLoggingInterceptor logging) {
+    public OkHttpClient provideHttpBuilder(HttpLoggingInterceptor logging) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(logging);
 
-        return builder;
+        builder.connectTimeout(10, TimeUnit.SECONDS);
+        builder.writeTimeout(10, TimeUnit.SECONDS);
+        builder.readTimeout(30, TimeUnit.SECONDS);
+
+        return builder.build();
     }
 
     @Provides
     @Singleton
     @SuppressWarnings("unused")
-    public Retrofit provideRetrofit(OkHttpClient.Builder httpClient) {
+    public Retrofit provideRetrofit(OkHttpClient httpClient) {
         return new Retrofit.Builder()
                 .baseUrl(API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient.build())
+                .client(httpClient)
                 .build();
     }
 

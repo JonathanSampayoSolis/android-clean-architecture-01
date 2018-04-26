@@ -1,4 +1,4 @@
-package com.example.jjsampayo.mvvmsample1.gui.coments;
+package com.example.jjsampayo.mvvmsample1.presentation.coments;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;

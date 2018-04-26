@@ -1,4 +1,4 @@
-package com.example.jjsampayo.mvvmsample1.data;
+package com.example.jjsampayo.mvvmsample1.data.repositories.albums;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;

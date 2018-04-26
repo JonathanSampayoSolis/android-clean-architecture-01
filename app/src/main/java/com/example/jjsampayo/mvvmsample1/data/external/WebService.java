@@ -1,9 +1,9 @@
-package com.example.jjsampayo.mvvmsample1.repositories.external;
+package com.example.jjsampayo.mvvmsample1.data.external;
 
-import com.example.jjsampayo.mvvmsample1.repositories.models.Album;
-import com.example.jjsampayo.mvvmsample1.repositories.models.Comment;
-import com.example.jjsampayo.mvvmsample1.repositories.models.Post;
-import com.example.jjsampayo.mvvmsample1.repositories.models.User;
+import com.example.jjsampayo.mvvmsample1.data.models.Album;
+import com.example.jjsampayo.mvvmsample1.data.models.Comment;
+import com.example.jjsampayo.mvvmsample1.data.models.Post;
+import com.example.jjsampayo.mvvmsample1.data.models.User;
 
 import java.util.List;
 

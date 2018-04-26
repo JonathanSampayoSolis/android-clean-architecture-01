@@ -1,4 +1,4 @@
-package com.example.jjsampayo.mvvmsample1.gui;
+package com.example.jjsampayo.mvvmsample1.presentation;
 
 import android.os.Bundle;
 
@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.example.jjsampayo.mvvmsample1.R;
-import com.example.jjsampayo.mvvmsample1.gui.users.ListUsersView;
+import com.example.jjsampayo.mvvmsample1.presentation.users.ListUsersView;
 
 public class MainActivity extends AppCompatActivity {
 

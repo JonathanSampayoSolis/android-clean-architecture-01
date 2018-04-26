@@ -7,7 +7,7 @@
     <data>
         <variable
             name="comment"
-            type="com.example.jjsampayo.mvvmsample1.repositories.models.Comment"/>
+            type="com.example.jjsampayo.mvvmsample1.data.models.Comment"/>
     </data>
 
     <LinearLayout

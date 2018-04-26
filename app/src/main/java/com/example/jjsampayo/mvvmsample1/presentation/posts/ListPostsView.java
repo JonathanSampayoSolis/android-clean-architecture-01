@@ -1,4 +1,4 @@
-package com.example.jjsampayo.mvvmsample1.gui.posts;
+package com.example.jjsampayo.mvvmsample1.presentation.posts;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -19,7 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.example.jjsampayo.mvvmsample1.R;
-import com.example.jjsampayo.mvvmsample1.gui.coments.PostDetailView;
+import com.example.jjsampayo.mvvmsample1.presentation.coments.PostDetailView;
 import com.example.jjsampayo.mvvmsample1.data.models.Post;
 
 import java.util.ArrayList;

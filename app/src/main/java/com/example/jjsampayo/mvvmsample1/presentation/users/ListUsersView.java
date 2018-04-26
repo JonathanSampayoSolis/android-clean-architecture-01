@@ -1,4 +1,4 @@
-package com.example.jjsampayo.mvvmsample1.gui.users;
+package com.example.jjsampayo.mvvmsample1.presentation.users;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -25,7 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.jjsampayo.mvvmsample1.R;
-import com.example.jjsampayo.mvvmsample1.gui.ViewPagerActivity;
+import com.example.jjsampayo.mvvmsample1.presentation.ViewPagerActivity;
 import com.example.jjsampayo.mvvmsample1.data.models.User;
 import com.example.jjsampayo.mvvmsample1.util.anim.SwipeController;
 import com.example.jjsampayo.mvvmsample1.util.network.RequestState;

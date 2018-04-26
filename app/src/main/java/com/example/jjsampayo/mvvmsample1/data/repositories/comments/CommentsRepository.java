@@ -1,10 +1,11 @@
-package com.example.jjsampayo.mvvmsample1.data;
+package com.example.jjsampayo.mvvmsample1.data.repositories.comments;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
 
 import com.example.jjsampayo.mvvmsample1.data.external.WebService;
 import com.example.jjsampayo.mvvmsample1.data.models.Comment;
+import com.example.jjsampayo.mvvmsample1.data.repositories.albums.AlbumRepository;
 
 import java.util.List;
 

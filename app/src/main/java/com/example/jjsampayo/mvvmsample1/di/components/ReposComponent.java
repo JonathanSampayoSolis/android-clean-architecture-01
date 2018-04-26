@@ -6,11 +6,11 @@ import com.example.jjsampayo.mvvmsample1.di.modules.ReactiveModule;
 import com.example.jjsampayo.mvvmsample1.di.modules.RepoModule;
 import com.example.jjsampayo.mvvmsample1.di.modules.RoomModule;
 
-import com.example.jjsampayo.mvvmsample1.modules.album.ListAlbumViewModel;
-import com.example.jjsampayo.mvvmsample1.modules.coments.PostDetailViewModel;
-import com.example.jjsampayo.mvvmsample1.modules.posts.ListPostsViewModel;
-import com.example.jjsampayo.mvvmsample1.modules.users.ListUsersViewModel;
-import com.example.jjsampayo.mvvmsample1.repositories.UsersRepository;
+import com.example.jjsampayo.mvvmsample1.presentation.album.ListAlbumViewModel;
+import com.example.jjsampayo.mvvmsample1.presentation.coments.PostDetailViewModel;
+import com.example.jjsampayo.mvvmsample1.presentation.posts.ListPostsViewModel;
+import com.example.jjsampayo.mvvmsample1.presentation.users.ListUsersViewModel;
+import com.example.jjsampayo.mvvmsample1.data.repositories.users.UsersRepository;
 
 import javax.inject.Singleton;
 

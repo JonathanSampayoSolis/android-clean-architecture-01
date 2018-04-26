@@ -1,4 +1,4 @@
-package com.example.jjsampayo.mvvmsample1.gui.users;
+package com.example.jjsampayo.mvvmsample1.presentation.users;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;

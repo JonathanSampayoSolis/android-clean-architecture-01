@@ -1,4 +1,4 @@
-package com.example.jjsampayo.mvvmsample1.data.repo_users;
+package com.example.jjsampayo.mvvmsample1.data.repositories.users;
 
 import android.app.Application;
 
@@ -110,7 +110,7 @@ public class UsersRepository extends ItemKeyedDataSource<Integer, User> {
             public void onFailure(@NonNull Call<List<User>> call, @NonNull Throwable t) {
                 String errorMsg = t.getMessage() == null ? "unknow error" : t.getMessage();
                 Log.e(TAG, errorMsg);
-                initialState.postValue(new RequestState(Status.FAILED, errorMsg));
+                requestState.postValue(new RequestState(Status.FAILED, errorMsg));
             }
         });
 

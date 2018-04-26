@@ -4,8 +4,8 @@ import android.app.Application;
 import android.arch.persistence.room.Room;
 
 import com.example.jjsampayo.mvvmsample1.config.Constants;
-import com.example.jjsampayo.mvvmsample1.repositories.local.AppDatabase;
-import com.example.jjsampayo.mvvmsample1.repositories.local.daos.UserDao;
+import com.example.jjsampayo.mvvmsample1.data.local.AppDatabase;
+import com.example.jjsampayo.mvvmsample1.data.local.daos.UserDao;
 
 import javax.inject.Singleton;
 

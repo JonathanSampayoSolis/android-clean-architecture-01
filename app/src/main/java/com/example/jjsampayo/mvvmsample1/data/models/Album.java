@@ -1,4 +1,4 @@
-package com.example.jjsampayo.mvvmsample1.repositories.models;
+package com.example.jjsampayo.mvvmsample1.data.models;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

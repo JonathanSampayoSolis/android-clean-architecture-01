@@ -1,4 +1,4 @@
-package com.example.jjsampayo.mvvmsample1.gui;
+package com.example.jjsampayo.mvvmsample1.presentation;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,8 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jjsampayo.mvvmsample1.R;
-import com.example.jjsampayo.mvvmsample1.gui.album.ListAlbumView;
-import com.example.jjsampayo.mvvmsample1.gui.posts.ListPostsView;
+import com.example.jjsampayo.mvvmsample1.presentation.album.ListAlbumView;
+import com.example.jjsampayo.mvvmsample1.presentation.posts.ListPostsView;
 
 public class ViewPagerActivity extends AppCompatActivity {
 

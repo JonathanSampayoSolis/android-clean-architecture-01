@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".modules.MainActivity"
+            android:name=".presentation.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".modules.ViewPagerActivity"/>
-        <activity android:name=".modules.coments.PostDetailView"/>
+        <activity android:name=".presentation.ViewPagerActivity"/>
+        <activity android:name=".presentation.coments.PostDetailView"/>
     </application>
 
 </manifest>

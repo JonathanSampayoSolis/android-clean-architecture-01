@@ -1,4 +1,4 @@
-package com.example.jjsampayo.mvvmsample1.gui.album;
+package com.example.jjsampayo.mvvmsample1.presentation.album;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
