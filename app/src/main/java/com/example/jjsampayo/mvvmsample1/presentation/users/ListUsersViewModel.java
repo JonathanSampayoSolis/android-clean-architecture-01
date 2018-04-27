@@ -10,6 +10,7 @@ import android.arch.paging.PagedList;
 import android.support.annotation.NonNull;
 
 import com.example.jjsampayo.mvvmsample1.App;
+import com.example.jjsampayo.mvvmsample1.data.repositories.users.UsersBoundaryCallback;
 import com.example.jjsampayo.mvvmsample1.data.repositories.users.UsersDataSource;
 import com.example.jjsampayo.mvvmsample1.data.models.User;
 import com.example.jjsampayo.mvvmsample1.util.network.RequestState;
@@ -27,6 +28,8 @@ public class ListUsersViewModel extends AndroidViewModel {
 
     private LiveData<PagedList<User>> listLiveData;
 
+    private UsersBoundaryCallback usersBoundaryCallback;
+
     public ListUsersViewModel(@NonNull Application application) {
         super(application);
         App.getReposComponent().inject(this);
@@ -40,8 +43,11 @@ public class ListUsersViewModel extends AndroidViewModel {
                     .setPrefetchDistance(2)
                     .build();
 
+            usersBoundaryCallback = new UsersBoundaryCallback();
+
             listLiveData = new LivePagedListBuilder<Integer, User>(usersDataSource, pagedListConfig)
-                            .build();
+                    .setBoundaryCallback(usersBoundaryCallback)
+                    .build();
         }
 
         return listLiveData;

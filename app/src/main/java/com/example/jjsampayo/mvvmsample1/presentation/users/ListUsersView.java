@@ -5,10 +5,10 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.arch.paging.PagedList;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,7 +17,7 @@ import android.support.v7.widget.RecyclerView;
 
 import android.support.v7.widget.helper.ItemTouchHelper;
 
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +34,6 @@ import com.example.jjsampayo.mvvmsample1.util.network.Status;
 public class ListUsersView extends Fragment {
 
     private static final String TAG = ListUsersView.class.getSimpleName().toUpperCase();
-
-    private View mainView;
 
     private ProgressBar progressBar;
 
@@ -62,8 +60,6 @@ public class ListUsersView extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
-        this.mainView = view;
-
         final RecyclerView recyclerView = view.findViewById(R.id.fra_list_users_recycler);
         progressBar        = view.findViewById(R.id.fra_list_users_progress);
         swipeRefreshLayout = view.findViewById(R.id.fra_list_users_swipe);

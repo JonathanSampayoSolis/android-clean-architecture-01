@@ -1,5 +1,6 @@
 package com.example.jjsampayo.mvvmsample1.di.components;
 
+import com.example.jjsampayo.mvvmsample1.data.repositories.users.UsersBoundaryCallback;
 import com.example.jjsampayo.mvvmsample1.di.modules.AppModule;
 import com.example.jjsampayo.mvvmsample1.di.modules.NetModule;
 import com.example.jjsampayo.mvvmsample1.di.modules.ReactiveModule;
@@ -19,14 +20,20 @@ import dagger.Component;
 @Singleton
 @Component(modules = {AppModule.class, NetModule.class, RoomModule.class, RepoModule.class, ReactiveModule.class})
 public interface ReposComponent {
+
     void inject(ListUsersViewModel viewModel);
+
+    void inject(UsersRepository repository);
+
+    void inject(UsersBoundaryCallback usersBoundaryCallback);
+
 
     void inject(ListPostsViewModel viewModel);
 
+
     void inject(ListAlbumViewModel viewModel);
 
-    void inject(PostDetailViewModel viewModel);
 
-    void inject(UsersRepository repository);
+    void inject(PostDetailViewModel viewModel);
 
 }
