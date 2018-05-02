@@ -6,6 +6,7 @@ import android.arch.paging.PagedList;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -81,7 +82,12 @@ public class ListUsersView extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                viewModel.refresh();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 1000);
             }
         });
     }
@@ -105,7 +111,6 @@ public class ListUsersView extends Fragment {
                     if (requestState != null) {
                         progressBar.setVisibility(View.GONE);
                         textViewError.setVisibility(View.GONE);
-                        swipeRefreshLayout.setRefreshing(false);
 
                         if (requestState.getStatus() == Status.RUNNING)
                             progressBar.setVisibility(View.VISIBLE);
@@ -123,9 +128,8 @@ public class ListUsersView extends Fragment {
             viewModel.getRequestState().observe(getActivity(), new Observer<RequestState>() {
                 @Override
                 public void onChanged(@Nullable RequestState requestState) {
-                    if (requestState != null) {
+                    if (requestState != null)
                         adapter.setRequestState(requestState);
-                    }
                 }
             });
 

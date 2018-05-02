@@ -10,11 +10,17 @@ import android.arch.paging.PagedList;
 import android.support.annotation.NonNull;
 
 import com.example.jjsampayo.mvvmsample1.App;
+import com.example.jjsampayo.mvvmsample1.config.Constants;
+import com.example.jjsampayo.mvvmsample1.data.local.daos.UserDao;
 import com.example.jjsampayo.mvvmsample1.data.repositories.users.UsersBoundaryCallback;
 import com.example.jjsampayo.mvvmsample1.data.repositories.users.UsersDataSource;
 import com.example.jjsampayo.mvvmsample1.data.models.User;
 import com.example.jjsampayo.mvvmsample1.util.network.RequestState;
+import com.example.jjsampayo.mvvmsample1.util.other.AppExecutors;
 import com.example.jjsampayo.mvvmsample1.util.reactive.ReactiveEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -26,6 +32,12 @@ public class ListUsersViewModel extends AndroidViewModel {
     @Inject
     UsersDataSource usersDataSource;
 
+    @Inject
+    AppExecutors appExecutors;
+
+    @Inject
+    UserDao userDao;
+
     private LiveData<PagedList<User>> listLiveData;
 
     private UsersBoundaryCallback usersBoundaryCallback;
@@ -33,22 +45,20 @@ public class ListUsersViewModel extends AndroidViewModel {
     public ListUsersViewModel(@NonNull Application application) {
         super(application);
         App.getReposComponent().inject(this);
+        usersBoundaryCallback = new UsersBoundaryCallback();
     }
 
     public LiveData<PagedList<User>> getListUser() {
-        if (listLiveData == null) {
             PagedList.Config pagedListConfig = new PagedList.Config.Builder()
-                    .setInitialLoadSizeHint(3)
-                    .setPageSize(2)
-                    .setPrefetchDistance(2)
+                    .setEnablePlaceholders(true)
+                    .setInitialLoadSizeHint(Constants.PAGING_INITIAL_HINT)
+                    .setPageSize(Constants.PAGING_PAGE_SIZE)
+                    .setPrefetchDistance(Constants.PAGING_PREFETCH)
                     .build();
 
-            usersBoundaryCallback = new UsersBoundaryCallback();
-
-            listLiveData = new LivePagedListBuilder<Integer, User>(usersDataSource, pagedListConfig)
+            listLiveData = new LivePagedListBuilder<>(userDao.getAllByFactory(), pagedListConfig)
                     .setBoundaryCallback(usersBoundaryCallback)
                     .build();
-        }
 
         return listLiveData;
     }
@@ -66,11 +76,20 @@ public class ListUsersViewModel extends AndroidViewModel {
     }
 
     public MutableLiveData<RequestState> getInitialState() {
-        return usersDataSource.getRepository().getInitialState();
+        return usersBoundaryCallback.getInitialState();
     }
 
     public MutableLiveData<RequestState> getRequestState() {
-        return usersDataSource.getRepository().getRequestState();
+        return usersBoundaryCallback.getRequestState();
+    }
+
+    private void clearTable() {
+        appExecutors.diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                userDao.clearTable();
+            }
+        });
     }
 
 }

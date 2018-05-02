@@ -14,10 +14,13 @@ import java.util.List;
 public interface UserDao {
 
     @Query("select * from users")
-    DataSource.Factory<Integer, User> getAll();
+    List<User> getAll();
 
     @Query("select * from users")
-    List<User> getAllList();
+    DataSource.Factory<Integer, User> getAllByFactory();
+
+    @Query("select * from users where id = :userID")
+    User getByID(int userID);
 
     @Query("delete from users")
     void clearTable();
